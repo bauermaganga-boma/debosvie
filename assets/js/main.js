@@ -27,7 +27,7 @@
   function closeNav() { nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
   burger.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
     document.body.style.overflow = open ? 'hidden' : '';
   });
   $$('#nav a').forEach(function (a) { a.addEventListener('click', closeNav); });
