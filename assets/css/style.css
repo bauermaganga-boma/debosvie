@@ -248,3 +248,10 @@ h2 em,h1 em{font-style:italic;color:var(--coral)}
 /* Sélecteur de langue */
 .lang{font-weight:700!important;font-size:.82rem!important;letter-spacing:.08em;border:2px solid var(--ink);border-radius:999px;padding:5px 12px;line-height:1}
 .lang:hover{background:var(--ink);color:var(--cream)!important}
+
+/* Formulaire : e-mail, consentement, anti-spam */
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form .consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.85rem;color:var(--muted)}
+.form .consent input{width:auto;margin-top:3px;accent-color:#D9382C}
+.pro-link{color:#8f80a8;font-size:.8rem;text-decoration:none}
+.pro-link:hover{color:var(--gold)}

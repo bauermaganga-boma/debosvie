@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Debos Vie — Espace de gestion</title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/gestion.css">
+</head>
+<body>
+
+<!-- Connexion (mode production) -->
+<div class="login hide" id="login">
+  <form class="login-box" id="loginForm">
+    <img src="../assets/img/logo-mark.svg" alt="">
+    <h1>Espace de gestion</h1>
+    <p>Connectez-vous pour gérer vos demandes, devis, factures et contrats.</p>
+    <label>Identifiant (e-mail)<input class="inp" type="email" id="lEmail" autocomplete="username" required></label>
+    <label>Mot de passe<input class="inp" type="password" id="lPass" autocomplete="current-password" required></label>
+    <div class="login-err" id="lErr" role="alert"></div>
+    <button class="btn btn-p" type="submit" style="width:100%;justify-content:center">Se connecter</button>
+  </form>
+</div>
+
+<!-- Application -->
+<div class="app hide" id="app">
+  <aside class="side">
+    <a class="brand" href="#/dashboard"><img src="../assets/img/logo-mark.svg" alt=""><span><b>Debos <em>Vie</em></b><small>GESTION</small></span></a>
+    <a class="nav-a" data-r="dashboard" href="#/dashboard"><span class="ic">▦</span>Tableau de bord</a>
+    <a class="nav-a" data-r="demandes" href="#/demandes"><span class="ic">✉</span>Demandes<span class="cnt hide" id="cntReq"></span></a>
+    <a class="nav-a" data-r="devis" href="#/devis"><span class="ic">✎</span>Devis</a>
+    <a class="nav-a" data-r="factures" href="#/factures"><span class="ic">€</span>Factures</a>
+    <a class="nav-a" data-r="contrats" href="#/contrats"><span class="ic">§</span>Contrats</a>
+    <a class="nav-a" data-r="projets" href="#/projets"><span class="ic">▶</span>Production</a>
+    <a class="nav-a" data-r="clients" href="#/clients"><span class="ic">☺</span>Clients</a>
+    <a class="nav-a" data-r="modeles" href="#/modeles"><span class="ic">❏</span>Modèles</a>
+    <a class="nav-a" data-r="parametres" href="#/parametres"><span class="ic">⚙</span>Paramètres</a>
+    <span class="sp"></span>
+    <div class="foot"><span id="whoami"></span><br><a href="../" style="color:#E5DAF2">← Voir le site</a><br><button id="btnLogout" class="hide">Se déconnecter</button></div>
+  </aside>
+  <main class="main">
+    <div class="demo-bar hide" id="demoBar">Mode démonstration : données fictives enregistrées uniquement dans ce navigateur. <button data-act="resetDemo">Réinitialiser la démo</button></div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<div id="modal"></div>
+<div id="toast" class="hide" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/store.js"></script>
+<script src="js/core.js"></script>
+<script src="js/views.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

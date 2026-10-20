@@ -6,22 +6,28 @@
   var CONFIG = {
     email: '',        // ex. 'contact@debosvie.com' → active l'envoi du formulaire par e-mail
     tiktok: '',       // ex. 'https://www.tiktok.com/@...'
-    instagram: ''     // ex. 'https://www.instagram.com/...'
+    instagram: '',    // ex. 'https://www.instagram.com/...'
+    // Réception des demandes dans l'espace de gestion (clé « publishable » : publique par conception)
+    supabaseUrl: '',
+    supabaseKey: '',
+    schema: 'debosvie'
   };
 
   var DE = document.documentElement.lang === 'de';
   var T = DE ? {
-    need: 'Bitte Namen und Projekt angeben.',
+    need: 'Bitte Namen, E-Mail und Projekt angeben.',
     hello: 'Hallo Debos Vie,\n\n', nom: 'Name: ', soc: '\nUnternehmen: ', pack: '\nPaket: ', plat: '\nPlattform: ', proj: '\n\nProjekt:\n',
     subj: 'UGC-Angebotsanfrage', mail: 'Dein E-Mail-Programm öffnet sich mit der vorbereiteten Anfrage.',
     copied: 'Anfrage kopiert! Füge sie in eine Nachricht an Debos Vie über ihren YouTube-Kanal ein.', copy: 'Kopiere deine Anfrage und sende sie über den YouTube-Kanal.',
-    open: 'Menü öffnen', close: 'Menü schließen'
+    open: 'Menü öffnen', close: 'Menü schließen',
+    sent: 'Danke! Deine Anfrage ist angekommen – ich melde mich bald bei dir.', sending: 'Wird gesendet…', fail: 'Senden fehlgeschlagen. '
   } : {
-    need: 'Merci de renseigner votre nom et votre projet.',
+    need: 'Merci de renseigner votre nom, votre e-mail et votre projet.',
     hello: 'Bonjour Debos Vie,\n\n', nom: 'Nom : ', soc: '\nEntreprise : ', pack: '\nFormule : ', plat: '\nPlateforme : ', proj: '\n\nProjet :\n',
     subj: 'Demande de devis UGC', mail: 'Votre messagerie s\'ouvre avec la demande pré-remplie.',
     copied: 'Demande copiée ! Collez-la dans un message à Debos Vie via sa chaîne YouTube.', copy: 'Copiez votre demande puis envoyez-la via la chaîne YouTube.',
-    open: 'Ouvrir le menu', close: 'Fermer le menu'
+    open: 'Ouvrir le menu', close: 'Fermer le menu',
+    sent: 'Merci ! Votre demande est bien reçue, je reviens vers vous très vite.', sending: 'Envoi en cours…', fail: 'Envoi impossible pour le moment. '
   };
 
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -99,25 +105,47 @@
   });
 
   // Formulaire de demande de devis
-  var form = $('#brief'), msg = $('#formMsg');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var d = new FormData(form);
-    if (!String(d.get('nom')).trim() || !String(d.get('message')).trim()) {
-      msg.className = 'form-msg'; msg.textContent = T.need; return;
-    }
-    var body = T.hello + T.nom + d.get('nom') + T.soc + (d.get('societe') || '—') + T.pack + d.get('pack') + T.plat + d.get('plateforme') + T.proj + d.get('message');
+  var form = $('#brief'), msg = $('#formMsg'), btn = $('#sendBtn');
+
+  function fallback(body, prefix) {
     if (CONFIG.email) {
       window.location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent(T.subj) + '&body=' + encodeURIComponent(body);
-      msg.className = 'form-msg ok'; msg.textContent = T.mail;
-    } else {
-      var done = function (ok) {
-        msg.className = 'form-msg ok';
-        msg.textContent = ok ? T.copied : T.copy;
-        window.open('https://www.youtube.com/@Debosvie/about', '_blank', 'noopener');
-      };
-      if (navigator.clipboard) navigator.clipboard.writeText(body).then(function () { done(true); }, function () { done(false); });
-      else done(false);
+      msg.className = 'form-msg ok'; msg.textContent = T.mail; return;
     }
+    var done = function (ok) {
+      msg.className = 'form-msg ok';
+      msg.textContent = (prefix || '') + (ok ? T.copied : T.copy);
+      window.open('https://www.youtube.com/@Debosvie/about', '_blank', 'noopener');
+    };
+    if (navigator.clipboard) navigator.clipboard.writeText(body).then(function () { done(true); }, function () { done(false); });
+    else done(false);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form), v = function (k) { return String(d.get(k) || '').trim(); };
+    if (!v('nom') || !v('message') || v('email').indexOf('@') < 1) {
+      msg.className = 'form-msg'; msg.textContent = T.need; return;
+    }
+    if (v('website')) { msg.className = 'form-msg ok'; msg.textContent = T.sent; return; } // anti-spam : champ piège rempli
+    var body = T.hello + T.nom + v('nom') + T.soc + (v('societe') || '—') + '\nE-mail : ' + v('email') + (v('telephone') ? '\nTel : ' + v('telephone') : '') +
+      T.pack + v('pack') + T.plat + v('plateforme') + T.proj + v('message');
+
+    if (!CONFIG.supabaseUrl || !CONFIG.supabaseKey) { fallback(body); return; }
+
+    btn.disabled = true; msg.className = 'form-msg'; msg.textContent = T.sending;
+    fetch(CONFIG.supabaseUrl + '/rest/v1/requests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', 'apikey': CONFIG.supabaseKey, 'Authorization': 'Bearer ' + CONFIG.supabaseKey,
+        'Content-Profile': CONFIG.schema, 'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ data: { nom: v('nom'), societe: v('societe'), email: v('email'), telephone: v('telephone'), pack: v('pack'), plateforme: v('plateforme'), message: v('message'), lang: DE ? 'de' : 'fr' } })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      msg.className = 'form-msg ok'; msg.textContent = T.sent; form.reset();
+    }).catch(function () {
+      btn.disabled = false; fallback(body, T.fail);
+    }).then(function () { btn.disabled = false; });
   });
 })();

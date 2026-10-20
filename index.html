@@ -267,6 +267,10 @@
         <label>Entreprise<input name="societe" autocomplete="organization"></label>
       </div>
       <div class="two">
+        <label>E-mail<input name="email" type="email" required autocomplete="email"></label>
+        <label>Téléphone (facultatif)<input name="telephone" type="tel" autocomplete="tel"></label>
+      </div>
+      <div class="two">
         <label>Formule
           <select name="pack" id="packSel"><option>Je ne sais pas encore</option><option>Starter</option><option>Boost</option><option>Signature</option></select>
         </label>
@@ -275,6 +279,8 @@
         </label>
       </div>
       <label>Votre projet<textarea name="message" rows="4" required placeholder="Produit, objectif, délais…"></textarea></label>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent"><input type="checkbox" name="consent" required> <span>J'accepte que mes données soient utilisées pour répondre à ma demande (aucune autre utilisation).</span></label>
       <button class="btn btn-coral" type="submit" id="sendBtn">Envoyer ma demande <svg class="ic"><use href="#i-arrow"/></svg></button>
       <p class="form-msg" id="formMsg" role="status"></p>
     </form>
@@ -286,6 +292,7 @@
   <div class="wrap foot">
     <a class="brand light" href="#top"><svg class="brand-mark" aria-hidden="true"><use href="#dv-mark"/></svg><span class="brand-name">Debos <em>Vie</em></span></a>
     <p>© <span id="year">2026</span> Debos Vie. Tous droits réservés. Site développé par <strong class="nendja">Nendja</strong>.</p>
+    <a class="pro-link" href="gestion/" rel="nofollow">Espace pro</a>
   </div>
 </footer>
 
