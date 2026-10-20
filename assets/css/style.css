@@ -89,7 +89,12 @@ h2 em,h1 em{font-style:italic;color:var(--coral)}
 /* Marques */
 .brands{background:var(--ink);color:var(--cream);padding:30px 0}
 .brands-label{text-align:center;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lilac);margin-bottom:14px}
-.brands-row{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 48px;font-family:var(--serif);font-weight:700;font-size:clamp(1.4rem,3vw,2rem);opacity:.95}
+.brands-row{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;max-width:900px;margin-inline:auto}
+.brand-card{background:#fff;border-radius:18px;padding:18px 14px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:0 10px 24px -14px rgba(0,0,0,.6);transition:transform .25s}
+.brand-card:hover{transform:translateY(-3px)}
+.brand-logo{height:46px;width:100%;display:flex;align-items:center;justify-content:center}
+.brand-logo img{max-height:100%;max-width:78%;width:auto;height:auto;object-fit:contain}
+.brand-label{font-family:var(--serif);font-weight:700;font-size:1.05rem;color:var(--ink);line-height:1}
 
 /* Sections */
 .section{padding:96px 0}
@@ -236,7 +241,7 @@ h2 em,h1 em{font-style:italic;color:var(--coral)}
   .services,.cards4,.steps{grid-template-columns:1fr}
   .form .two{grid-template-columns:1fr}
   .cap{font-size:.85rem;left:10px;right:10px;bottom:10px}
-  .brands-row{gap:6px 28px}
+  .brands-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .foot{flex-direction:column;text-align:center}
 }
 

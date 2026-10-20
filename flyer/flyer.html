@@ -16,25 +16,25 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05}
 .page{position:relative;width:210mm;height:297mm;overflow:hidden}
 
 /* En-tête sombre */
-.top{position:absolute;inset:0 0 auto 0;height:158mm;background:var(--ink);border-radius:0 0 90mm 0;overflow:hidden}
+.top{position:absolute;inset:0 0 auto 0;height:146mm;background:var(--ink);border-radius:0 0 90mm 0;overflow:hidden}
 .top::before{content:"";position:absolute;width:120mm;height:120mm;border-radius:50%;background:var(--coral);right:-40mm;top:-50mm;opacity:.9}
-.top::after{content:"";position:absolute;width:70mm;height:70mm;border-radius:50%;background:var(--gold);right:35mm;top:92mm;opacity:.95}
-.lilac{position:absolute;width:44mm;height:44mm;border-radius:50%;background:var(--lilac);right:-10mm;top:112mm;z-index:1}
+.top::after{content:"";position:absolute;width:70mm;height:70mm;border-radius:50%;background:var(--gold);right:35mm;top:80mm;opacity:.95}
+.lilac{position:absolute;width:44mm;height:44mm;border-radius:50%;background:var(--lilac);right:-10mm;top:100mm;z-index:1}
 
-.brandbar{position:absolute;left:16mm;top:14mm;display:flex;align-items:center;gap:4mm;z-index:5;color:var(--cream)}
+.brandbar{position:absolute;left:16mm;top:11mm;display:flex;align-items:center;gap:4mm;z-index:5;color:var(--cream)}
 .brandbar img{width:17mm;height:17mm;border-radius:4.5mm}
 .brandbar b{font-family:'Fraunces',serif;font-size:21pt;font-weight:700;display:block;line-height:1}
 .brandbar b em{color:var(--coral);font-style:italic}
 .brandbar small{letter-spacing:.35em;font-size:7.5pt;color:var(--lilac);display:block;margin-top:1.5mm}
 
-.hero{position:absolute;left:16mm;top:44mm;width:96mm;z-index:5;color:var(--cream)}
+.hero{position:absolute;left:16mm;top:36mm;width:96mm;z-index:5;color:var(--cream)}
 .kick{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;padding:2mm 4.5mm;border-radius:99mm;margin-bottom:6mm}
 .hero h1{font-size:30pt;font-weight:700;letter-spacing:-.01em}
 .hero h1 em{color:var(--coral);font-style:italic}
 .hero p{margin-top:6mm;font-size:10.5pt;line-height:1.5;color:#E5DAF2;width:88mm}
 
 /* Téléphones */
-.phones{position:absolute;right:9mm;top:46mm;width:80mm;height:118mm;z-index:6}
+.phones{position:absolute;right:9mm;top:36mm;width:80mm;height:118mm;z-index:6}
 .ph{position:absolute;border-radius:7mm;border:1.6mm solid #12071F;box-shadow:0 8mm 14mm -6mm rgba(0,0,0,.55);overflow:hidden}
 .ph .notch{position:absolute;top:1.6mm;left:50%;width:16mm;height:3.6mm;background:#12071F;border-radius:3mm;transform:translateX(-50%);z-index:3}
 .ph.a{width:46mm;height:92mm;left:16mm;top:0;background:linear-gradient(165deg,#FFB627,#FF5A4E 70%);z-index:3}
@@ -53,7 +53,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05}
 .s2{left:-14mm;top:96mm;background:#fff;color:var(--ink);transform:rotate(-5deg)}
 
 /* Services */
-.services{position:absolute;left:16mm;right:16mm;top:168mm}
+.services{position:absolute;left:16mm;right:16mm;top:156mm}
 .services h2{font-size:21pt;font-weight:700}
 .services h2 em{color:var(--coral);font-style:italic}
 .chips{display:flex;flex-wrap:wrap;gap:2.4mm;margin-top:4mm}
@@ -61,7 +61,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05}
 
 
 /* Formules */
-.packs{position:absolute;left:16mm;right:16mm;top:207mm;display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.packs{position:absolute;left:16mm;right:16mm;top:192mm;display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
 .pk{border-radius:5mm;padding:5mm 5mm 4.5mm;background:#fff;box-shadow:0 5mm 10mm -7mm rgba(27,11,46,.45);position:relative}
 .pk.hot{background:var(--ink);color:var(--cream);border:.5mm solid var(--coral);transform:translateY(-3mm)}
 .pk .bd{position:absolute;top:-3mm;left:5mm;background:var(--gold);color:var(--ink);font-size:6.5pt;font-weight:700;padding:.9mm 3mm;border-radius:9mm}
@@ -74,9 +74,16 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05}
 .pk.hot li::before{color:var(--gold)}
 
 /* Marques */
-.brands{position:absolute;left:0;right:0;top:253mm;text-align:center}
+.brands{position:absolute;left:0;right:0;top:238mm;text-align:center}
 .brands p{font-size:6.8pt;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8mm}
-.brands div{font-family:'Fraunces',serif;font-weight:700;font-size:15pt;display:flex;justify-content:center;gap:11mm}
+
+
+
+.brands div{display:flex;justify-content:center;gap:5mm}
+.bc{background:#fff;border-radius:3.5mm;padding:2.4mm 5mm 2mm;width:34mm;display:flex;flex-direction:column;align-items:center;gap:1.4mm;box-shadow:0 2.5mm 5mm -3mm rgba(27,11,46,.5)}
+.bc i{display:flex;height:8.5mm;align-items:center;justify-content:center}
+.bc img{height:8mm;width:auto;max-width:24mm;display:block}
+.bc b{font-family:'Fraunces',serif;font-size:9pt;font-weight:700;line-height:1}
 
 /* Pied */
 .foot{position:absolute;left:0;right:0;bottom:0;height:27mm;background:#E8443A;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16mm}
@@ -129,7 +136,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05}
 
   <div class="brands">
     <p>Marques avec lesquelles Debos Vie collabore</p>
-    <div><span>Microsoft</span><span>LinkedIn</span><span>Amazon</span><span>HP</span></div>
+    <div><span class="bc"><i><img src="../assets/img/brands/microsoft.svg" alt="Logo Microsoft"></i><b>Microsoft</b></span><span class="bc"><i><img src="../assets/img/brands/linkedin.svg" alt="Logo LinkedIn"></i><b>LinkedIn</b></span><span class="bc"><i><img src="../assets/img/brands/amazon.svg" alt="Logo Amazon"></i><b>Amazon</b></span><span class="bc"><i><img src="../assets/img/brands/hp.svg" alt="Logo HP"></i><b>HP</b></span></div>
   </div>
 
   <div class="foot">
