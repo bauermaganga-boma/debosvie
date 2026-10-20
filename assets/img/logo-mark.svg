@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Debos Vie">
+  <rect width="64" height="64" rx="16" fill="#1B0B2E"/>
+  <path fill="#FFF6EC" fill-rule="evenodd" d="M13 11h19c15 0 24 9 24 21s-9 21-24 21H13V11Zm13 12v18h5c8 0 12-4 12-9s-4-9-12-9h-5Z"/>
+  <path fill="#FF5A4E" d="M30 26.5v11l9-5.5-9-5.5Z"/>
+  <path fill="#FFB627" d="M52 3l2.2 5.8L60 11l-5.8 2.2L52 19l-2.2-5.8L44 11l5.8-2.2L52 3Z"/>
+</svg>

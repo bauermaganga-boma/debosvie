@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" role="img" aria-label="Debos Vie — UGC creator">
+  <g transform="translate(4 8)">
+    <rect width="80" height="80" rx="20" fill="#1B0B2E"/>
+    <g transform="scale(1.25)">
+      <path fill="#FFF6EC" fill-rule="evenodd" d="M13 11h19c15 0 24 9 24 21s-9 21-24 21H13V11Zm13 12v18h5c8 0 12-4 12-9s-4-9-12-9h-5Z"/>
+      <path fill="#FF5A4E" d="M30 26.5v11l9-5.5-9-5.5Z"/>
+      <path fill="#FFB627" d="M52 3l2.2 5.8L60 11l-5.8 2.2L52 19l-2.2-5.8L44 11l5.8-2.2L52 3Z"/>
+    </g>
+  </g>
+  <text x="104" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700" fill="#1B0B2E">Debos <tspan fill="#FF5A4E" font-style="italic">Vie</tspan></text>
+  <text x="106" y="76" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="5" fill="#6B5A80">UGC CREATOR</text>
+</svg>

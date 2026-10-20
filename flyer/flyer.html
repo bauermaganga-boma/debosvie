@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Flyer Debos Vie — Offres UGC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:210mm 297mm;margin:0}
+:root{--ink:#1B0B2E;--ink2:#2A1445;--cream:#FFF6EC;--coral:#FF5A4E;--gold:#FFB627;--lilac:#C9B6FF;--muted:#6B5A80}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:210mm;height:297mm;background:var(--cream);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:'Outfit',sans-serif;color:var(--ink);position:relative;overflow:hidden}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.05}
+.page{position:relative;width:210mm;height:297mm;overflow:hidden}
+
+/* En-tête sombre */
+.top{position:absolute;inset:0 0 auto 0;height:158mm;background:var(--ink);border-radius:0 0 90mm 0;overflow:hidden}
+.top::before{content:"";position:absolute;width:120mm;height:120mm;border-radius:50%;background:var(--coral);right:-40mm;top:-50mm;opacity:.9}
+.top::after{content:"";position:absolute;width:70mm;height:70mm;border-radius:50%;background:var(--gold);right:35mm;top:92mm;opacity:.95}
+.lilac{position:absolute;width:44mm;height:44mm;border-radius:50%;background:var(--lilac);right:-10mm;top:112mm;z-index:1}
+
+.brandbar{position:absolute;left:16mm;top:14mm;display:flex;align-items:center;gap:4mm;z-index:5;color:var(--cream)}
+.brandbar img{width:17mm;height:17mm;border-radius:4.5mm}
+.brandbar b{font-family:'Fraunces',serif;font-size:21pt;font-weight:700;display:block;line-height:1}
+.brandbar b em{color:var(--coral);font-style:italic}
+.brandbar small{letter-spacing:.35em;font-size:7.5pt;color:var(--lilac);display:block;margin-top:1.5mm}
+
+.hero{position:absolute;left:16mm;top:44mm;width:96mm;z-index:5;color:var(--cream)}
+.kick{display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;padding:2mm 4.5mm;border-radius:99mm;margin-bottom:6mm}
+.hero h1{font-size:30pt;font-weight:700;letter-spacing:-.01em}
+.hero h1 em{color:var(--coral);font-style:italic}
+.hero p{margin-top:6mm;font-size:10.5pt;line-height:1.5;color:#E5DAF2;width:88mm}
+
+/* Téléphones */
+.phones{position:absolute;right:9mm;top:46mm;width:80mm;height:118mm;z-index:6}
+.ph{position:absolute;border-radius:7mm;border:1.6mm solid #12071F;box-shadow:0 8mm 14mm -6mm rgba(0,0,0,.55);overflow:hidden}
+.ph .notch{position:absolute;top:1.6mm;left:50%;width:16mm;height:3.6mm;background:#12071F;border-radius:3mm;transform:translateX(-50%);z-index:3}
+.ph.a{width:46mm;height:92mm;left:16mm;top:0;background:linear-gradient(165deg,#FFB627,#FF5A4E 70%);z-index:3}
+.ph.b{width:36mm;height:72mm;left:-6mm;top:34mm;background:linear-gradient(165deg,#C9B6FF,#6A3DF0);transform:rotate(-9deg);z-index:2}
+.ph.c{width:36mm;height:72mm;right:-1mm;top:38mm;background:linear-gradient(165deg,#2A1445,#FF5A4E);transform:rotate(9deg);z-index:2}
+.ph .pl{position:absolute;inset:0;margin:auto;width:13mm;height:13mm;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center}
+.ph .pl::after{content:"";border-left:4.6mm solid var(--coral);border-top:3mm solid transparent;border-bottom:3mm solid transparent;margin-left:1mm}
+.ph .ui{position:absolute;left:3mm;right:3mm;bottom:5mm;display:grid;gap:1.6mm}
+.ph .ui i{display:block;height:2mm;border-radius:2mm;background:rgba(255,255,255,.85)}
+.ph .ui i:nth-child(2){width:62%;background:rgba(255,255,255,.55)}
+.ph .tag{position:absolute;top:8mm;left:3mm;font-size:6.5pt;font-weight:700;background:#fff;color:var(--ink);padding:1mm 2.6mm;border-radius:9mm;z-index:3}
+.ph.c .tag{left:auto;right:3mm}
+.ph.a .tag{background:var(--ink);color:var(--cream)}
+.sticker{position:absolute;z-index:8;font-weight:700;font-size:8pt;padding:2mm 4mm;border-radius:99mm;box-shadow:0 3mm 6mm -2mm rgba(0,0,0,.4)}
+.s1{right:-3mm;top:-2mm;background:var(--gold);color:var(--ink);transform:rotate(6deg)}
+.s2{left:-14mm;top:96mm;background:#fff;color:var(--ink);transform:rotate(-5deg)}
+
+/* Services */
+.services{position:absolute;left:16mm;right:16mm;top:168mm}
+.services h2{font-size:21pt;font-weight:700}
+.services h2 em{color:var(--coral);font-style:italic}
+.chips{display:flex;flex-wrap:wrap;gap:2.4mm;margin-top:4mm}
+.chips span{font-size:8.6pt;font-weight:600;border:.4mm solid var(--ink);border-radius:99mm;padding:1.5mm 3.4mm}
+.chips span:nth-child(3n+1){background:var(--ink);color:var(--cream)}
+
+/* Formules */
+.packs{position:absolute;left:16mm;right:16mm;top:207mm;display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.pk{border-radius:5mm;padding:5mm 5mm 4.5mm;background:#fff;box-shadow:0 5mm 10mm -7mm rgba(27,11,46,.45);position:relative}
+.pk.hot{background:var(--ink);color:var(--cream);border:.5mm solid var(--coral);transform:translateY(-3mm)}
+.pk .bd{position:absolute;top:-3mm;left:5mm;background:var(--gold);color:var(--ink);font-size:6.5pt;font-weight:700;padding:.9mm 3mm;border-radius:9mm}
+.pk h3{font-size:15pt}
+.pk small{display:block;color:var(--muted);font-size:8pt;margin:1mm 0 3mm}
+.pk.hot small{color:var(--lilac)}
+.pk ul{list-style:none;font-size:8.6pt;line-height:1.35}
+.pk li{padding-left:4.4mm;position:relative;margin-bottom:1.1mm}
+.pk li::before{content:"✦";position:absolute;left:0;color:var(--coral);font-size:7pt;top:.5mm}
+.pk.hot li::before{color:var(--gold)}
+
+/* Marques */
+.brands{position:absolute;left:0;right:0;top:253mm;text-align:center}
+.brands p{font-size:6.8pt;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:1.8mm}
+.brands div{font-family:'Fraunces',serif;font-weight:700;font-size:15pt;display:flex;justify-content:center;gap:11mm}
+
+/* Pied */
+.foot{position:absolute;left:0;right:0;bottom:0;height:27mm;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16mm}
+.foot h3{font-size:17pt;font-weight:700}
+.foot p{font-size:9.5pt;margin-top:1.4mm;font-weight:500}
+.foot b{font-weight:700}
+.qr{display:flex;align-items:center;gap:4mm}
+.qr img{width:21mm;height:21mm;background:var(--cream);padding:1.6mm;border-radius:3mm}
+.qr span{font-size:7.5pt;line-height:1.3;font-weight:600;max-width:22mm}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top"></div><div class="lilac"></div>
+
+  <div class="brandbar">
+    <img src="../assets/img/logo-mark.svg" alt="">
+    <div><b>Debos <em>Vie</em></b><small>UGC CREATOR</small></div>
+  </div>
+
+  <div class="hero">
+    <span class="kick">Offres de services UGC</span>
+    <h1>Vos produits racontés par <em>une vraie personne.</em></h1>
+    <p>Des vidéos authentiques, pensées pour TikTok, Instagram Reels et YouTube Shorts, prêtes à booster vos campagnes.</p>
+  </div>
+
+  <div class="phones">
+    <div class="ph b"><span class="notch"></span><span class="tag">Avis</span><div class="ui"><i></i><i></i></div></div>
+    <div class="ph c"><span class="notch"></span><span class="tag">Démo</span><div class="ui"><i></i><i></i></div></div>
+    <div class="ph a"><span class="notch"></span><span class="tag">Hook en 3 s</span><span class="pl"></span><div class="ui"><i></i><i></i></div></div>
+    <span class="sticker s1">9:16</span><span class="sticker s2">Prêt pour vos pubs</span>
+  </div>
+
+  <section class="services">
+    <h2>Ce que je crée <em>pour votre marque</em></h2>
+    <div class="chips">
+      <span>Vidéo UGC produit</span><span>Unboxing &amp; avis</span><span>Témoignage face caméra</span>
+      <span>Démo &amp; tutoriel</span><span>Hooks pour publicités</span><span>Contenu LinkedIn &amp; B2B</span>
+    </div>
+  </section>
+
+  <section class="packs">
+    <div class="pk"><h3>Starter</h3><small>Pour tester l'UGC</small>
+      <ul><li>1 vidéo verticale</li><li>Script &amp; hook</li><li>1 retouche incluse</li></ul></div>
+    <div class="pk hot"><span class="bd">Le plus choisi</span><h3>Boost</h3><small>Pour alimenter vos pubs</small>
+      <ul><li>3 vidéos complémentaires</li><li>3 hooks différents</li><li>Sous-titres &amp; musique</li><li>2 retouches incluses</li></ul></div>
+    <div class="pk"><h3>Signature</h3><small>Campagne complète</small>
+      <ul><li>5 vidéos et plus</li><li>Photos lifestyle</li><li>Droits pub étendus</li><li>Sur mesure</li></ul></div>
+  </section>
+
+  <div class="brands">
+    <p>Marques avec lesquelles Debos Vie collabore</p>
+    <div><span>Microsoft</span><span>LinkedIn</span><span>Amazon</span><span>HP</span></div>
+  </div>
+
+  <div class="foot">
+    <div>
+      <h3>Parlons de votre prochaine campagne</h3>
+      <p>Devis sur mesure · <b>youtube.com/@Debosvie</b></p>
+    </div>
+    <div class="qr"><img src="qr.svg" alt="QR code du site Debos Vie"><span>Scannez pour voir le portfolio</span></div>
+  </div>
+</div>
+</body>
+</html>
