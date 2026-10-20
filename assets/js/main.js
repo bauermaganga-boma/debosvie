@@ -9,6 +9,21 @@
     instagram: ''     // ex. 'https://www.instagram.com/...'
   };
 
+  var DE = document.documentElement.lang === 'de';
+  var T = DE ? {
+    need: 'Bitte Namen und Projekt angeben.',
+    hello: 'Hallo Debos Vie,\n\n', nom: 'Name: ', soc: '\nUnternehmen: ', pack: '\nPaket: ', plat: '\nPlattform: ', proj: '\n\nProjekt:\n',
+    subj: 'UGC-Angebotsanfrage', mail: 'Dein E-Mail-Programm öffnet sich mit der vorbereiteten Anfrage.',
+    copied: 'Anfrage kopiert! Füge sie in eine Nachricht an Debos Vie über ihren YouTube-Kanal ein.', copy: 'Kopiere deine Anfrage und sende sie über den YouTube-Kanal.',
+    open: 'Menü öffnen', close: 'Menü schließen'
+  } : {
+    need: 'Merci de renseigner votre nom et votre projet.',
+    hello: 'Bonjour Debos Vie,\n\n', nom: 'Nom : ', soc: '\nEntreprise : ', pack: '\nFormule : ', plat: '\nPlateforme : ', proj: '\n\nProjet :\n',
+    subj: 'Demande de devis UGC', mail: 'Votre messagerie s\'ouvre avec la demande pré-remplie.',
+    copied: 'Demande copiée ! Collez-la dans un message à Debos Vie via sa chaîne YouTube.', copy: 'Copiez votre demande puis envoyez-la via la chaîne YouTube.',
+    open: 'Ouvrir le menu', close: 'Fermer le menu'
+  };
+
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
@@ -27,7 +42,7 @@
   function closeNav() { nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; }
   burger.addEventListener('click', function () {
     var open = nav.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? T.close : T.open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
   $$('#nav a').forEach(function (a) { a.addEventListener('click', closeNav); });
@@ -89,17 +104,16 @@
     e.preventDefault();
     var d = new FormData(form);
     if (!String(d.get('nom')).trim() || !String(d.get('message')).trim()) {
-      msg.className = 'form-msg'; msg.textContent = 'Merci de renseigner votre nom et votre projet.'; return;
+      msg.className = 'form-msg'; msg.textContent = T.need; return;
     }
-    var body = 'Bonjour Debos Vie,\n\nNom : ' + d.get('nom') + '\nEntreprise : ' + (d.get('societe') || '—') +
-      '\nFormule : ' + d.get('pack') + '\nPlateforme : ' + d.get('plateforme') + '\n\nProjet :\n' + d.get('message');
+    var body = T.hello + T.nom + d.get('nom') + T.soc + (d.get('societe') || '—') + T.pack + d.get('pack') + T.plat + d.get('plateforme') + T.proj + d.get('message');
     if (CONFIG.email) {
-      window.location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent('Demande de devis UGC') + '&body=' + encodeURIComponent(body);
-      msg.className = 'form-msg ok'; msg.textContent = 'Votre messagerie s\'ouvre avec la demande pré-remplie.';
+      window.location.href = 'mailto:' + CONFIG.email + '?subject=' + encodeURIComponent(T.subj) + '&body=' + encodeURIComponent(body);
+      msg.className = 'form-msg ok'; msg.textContent = T.mail;
     } else {
       var done = function (ok) {
         msg.className = 'form-msg ok';
-        msg.textContent = ok ? 'Demande copiée ! Collez-la dans un message à Debos Vie via sa chaîne YouTube.' : 'Copiez votre demande puis envoyez-la via la chaîne YouTube.';
+        msg.textContent = ok ? T.copied : T.copy;
         window.open('https://www.youtube.com/@Debosvie/about', '_blank', 'noopener');
       };
       if (navigator.clipboard) navigator.clipboard.writeText(body).then(function () { done(true); }, function () { done(false); });

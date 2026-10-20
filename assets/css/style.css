@@ -239,3 +239,7 @@ h2 em,h1 em{font-style:italic;color:var(--coral)}
   .brands-row{gap:6px 28px}
   .foot{flex-direction:column;text-align:center}
 }
+
+/* Sélecteur de langue */
+.lang{font-weight:700!important;font-size:.82rem!important;letter-spacing:.08em;border:2px solid var(--ink);border-radius:999px;padding:5px 12px;line-height:1}
+.lang:hover{background:var(--ink);color:var(--cream)!important}
